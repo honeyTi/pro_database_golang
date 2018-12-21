@@ -1,0 +1,75 @@
+/* 样式重置 */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,button,textarea,p,blockquote,th,td{padding:0;margin:0;}
+img{border:0;vertical-align:middle;}
+ol,ul{list-style:none;}
+h1,h2,h3,h4,h5,h6{font-weight:normal;font-size:100%;}
+address,caption,cite,code,dfn,em,strong,th,var{font-weight:normal;font-style:normal;}
+button,input,select,textarea{font-size:100%;font:inherit;border:0;outline:0;}
+a{color:#333;text-decoration:none;}
+table{border-collapse:collapse;border-spacing:0;}
+.fl{float:left;}
+.fr{float:right;}
+.clearfix:before,.clearfix:after{content:"";display:table;}
+.clearfix:after{clear:both;}
+.clearfix{*zoom:1;}
+body{font:14px/1.5 "Microsoft YaHei",arial,simsun,sans-serif;color:#333;}
+body div, body ul,body li {box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;}
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+}
+/*登录页面样式*/
+.login {
+    width: 100vw;
+    height: 100vh;
+    background: url("/static/img/login_bg.png") no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+}
+.login-map {
+    position: absolute;
+    width: 500px;
+    height: 350px;
+    top: 350px;
+    right: 200px;
+}
+.login-map .layui-form-item {
+    margin-bottom: 45px;
+}
+.login-map .layui-input-block {
+    margin-left: 0;
+}
+.login-map input.layui-input {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: none;
+    color: #CFD2D7;
+    height: 50px;
+    font-size: 28px;
+    width: 450px;
+    border: 1px solid #CFD2D7;
+}
+.login-map .layui-form-label {
+    background: #FEFFFF;
+    color: #0F1E3C;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.login-btn-map button:last-child {
+    background: none;
+    border: 1px solid #3D5B84;
+    color: #CFD2D7;
+    font-size: 22px;
+}
+.login-btn-map button:first-child {
+    background: #FEFFFF;
+    color: #0C162A;
+    font-size: 22px;
+}
