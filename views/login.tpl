@@ -21,38 +21,39 @@
         </div>
         <div class="layui-form-item login-btn-map">
             <div class="layui-input-block" style="text-align: right">
-                <button type="button" class="layui-btn">注册</button>
+                <a href="/register" class="layui-btn">注册</a>
                 <button type="submit" class="layui-btn" id="submitBtn" onclick="loginMap()">登录</button>
             </div>
         </div>
     {{if .LoginState}}
     {{else}}
         <script>
-            function loginMap() {
-                var uname = $("#uname").val()
-                var upwd = $("#pwd").val()
-                if (uname.length === 0 || uname === undefined) {
-                    modelOpen("提示", "账号不能为空")
-                    return false
-                }
-                if (upwd.length === 0 || upwd === undefined) {
-                    modelOpen("提示", "密码不能为空")
-                    return false
-                }
-                return true
-            }
-            function modelOpen(title, content) {
-                layer.open({
-                    title: title
-                    , content: content
-                });
-            }
+
         </script>
     {{end}}
     </form>
 </div>
 <script type="text/javascript">
     $("#snow").fallingSnow();
+    function loginMap() {
+        var uname = $("#uname").val()
+        var upwd = $("#pwd").val()
+        if (uname.length === 0 || uname === undefined) {
+            modelOpen("提示", "账号不能为空")
+            return false
+        }
+        if (upwd.length === 0 || upwd === undefined) {
+            modelOpen("提示", "密码不能为空")
+            return false
+        }
+        return true
+    }
+    function modelOpen(title, content) {
+        layer.open({
+            title: title
+            , content: content
+        });
+    }
 </script>
 </body>
 </html>

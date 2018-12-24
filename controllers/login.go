@@ -29,7 +29,7 @@ func (l *LoginController) Post() {
 	userInfo, err := models.UserLogin(uname, pwd)
 	if err != nil {
 		l.Data["LoginState"] = false
-		l.Redirect("/login", 302)
+		l.Redirect("/login", 301)
 		return
 	}
 
@@ -43,7 +43,7 @@ func (l *LoginController) Post() {
 		return
 	} else {
 		l.Data["LoginState"] = false
-		l.Redirect("/login", 302)
+		l.Redirect("/login", 301)
 		return
 	}
 }

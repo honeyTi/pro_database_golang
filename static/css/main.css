@@ -20,12 +20,16 @@ html, body {
     height: 100vh;
 }
 /*登录页面样式*/
-.login {
+.login, .register-map-1 {
     width: 100vw;
     height: 100vh;
     background: url("/static/img/login_bg.png") no-repeat;
     background-size: 100% 100%;
     position: relative;
+}
+.register-map-1 {
+    background: url("/static/img/register-bg.png") no-repeat!important;
+    background-size: 100% 100%!important;
 }
 .login-map {
     position: absolute;
@@ -68,7 +72,7 @@ html, body {
     color: #CFD2D7;
     font-size: 22px;
 }
-.login-btn-map button:first-child {
+.login-btn-map a:first-child {
     background: #FEFFFF;
     color: #0C162A;
     font-size: 22px;
