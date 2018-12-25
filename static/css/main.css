@@ -77,3 +77,23 @@ html, body {
     color: #0C162A;
     font-size: 22px;
 }
+/*登录页面样式*/
+.register-map {
+    padding-top: 270px;
+    width: 550px;
+    margin: 0 auto;
+}
+.register-form {
+    font-size: 16px;
+    background: #FFFFFF;
+    padding: 50px;
+    border-radius: 10px;
+}
+.register-form p {
+    color: #e40518;
+    font-size: 14px;
+    line-height: 30px;
+}
+.register-form input {
+    background: none;
+}
