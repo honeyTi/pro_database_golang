@@ -64,7 +64,7 @@
                 format: 'yyyy/MM'
             });
         });
-        // 首次加载下拉内容
+        // 首次加载下拉内容---数据缓存
         $.ajax({
             type: "get",
             url: "/goods/getOption",
@@ -72,12 +72,19 @@
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: function (result) {
-                console.log(result)
+                dataReset(result)
             },
             error: function ( err){
                 console.log(err)
             }
         });
+        var
+        // 数据处理
+        function dataReset(result) {
+            result.forEach(function (data, index) {
+
+            })
+        }
     }()
 </script>
 </body>

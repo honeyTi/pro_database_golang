@@ -10,6 +10,11 @@ type GoodsController struct {
 }
 
 func (this *GoodsController) Get() {
+	if CheckAccount(this.Ctx) {
+		this.Data["UserName"] = this.Ctx.GetCookie("uname")
+	} else {
+		this.Redirect("/login", 302)
+	}
 	this.Data["IsSp"] = true
 	this.TplName = "goods.tpl"
 }

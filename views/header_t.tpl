@@ -13,4 +13,5 @@
     <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="/static/assets/layui/layui.all.js"></script>
     <script type="text/javascript" src="/static/js/jquery.fallingsnow.min.js"></script>
+    <script type="text/javascript" src="/static/js/lodash.js"></script>
 {{end}}
