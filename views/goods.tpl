@@ -64,6 +64,20 @@
                 format: 'yyyy/MM'
             });
         });
+        // 首次加载下拉内容
+        $.ajax({
+            type: "get",
+            url: "/goods/getOption",
+            data: "",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                console.log(result)
+            },
+            error: function ( err){
+                console.log(err)
+            }
+        });
     }()
 </script>
 </body>
