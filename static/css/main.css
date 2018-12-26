@@ -97,3 +97,17 @@ html, body {
 .register-form input {
     background: none;
 }
+.layui-nav-item span {
+    margin-right: 10px;
+}
+.layui-nav-item-active {
+    background: #5377FE;
+}
+/*首页样式*/
+.search-padding {
+    padding: 10px;
+    border-bottom: 1px solid #E6E6E6;
+}
+.search-padding .layui-form-item {
+    margin-bottom: 0px;
+}

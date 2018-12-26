@@ -9,10 +9,11 @@ type IndexController struct {
 }
 
 func (c *IndexController) Get() {
-	if CheckAccount(c.Ctx){
+	if CheckAccount(c.Ctx) {
 		c.Data["UserName"] = c.Ctx.GetCookie("uname")
 	} else {
-		c.Redirect("/login",302)
+		c.Redirect("/login", 302)
 	}
+	c.Data["IsSummarize"] = true
 	c.TplName = "index.tpl"
 }

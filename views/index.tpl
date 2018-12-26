@@ -3,19 +3,30 @@
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
-    {{template "navbar" .}}
-    {{template "slider" .}}
+{{template "navbar" .}}
+{{template "slider" .}}
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        <div style="padding: 15px;">内容主体区域</div>
+        <form class="layui-form search-padding" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">联动选择框</label>
+                <div class="layui-input-inline">
+                    <select name="quiz1">
+                        <option value="">请选择省</option>
+                        <option value="浙江" selected="">浙江省</option>
+                        <option value="你的工号">江西省</option>
+                        <option value="你最喜欢的老师">福建省</option>
+                    </select>
+                </div>
+            </div>
+        </form>
     </div>
-    {{template "footer"}}
+{{template "footer"}}
 </div>
 <script>
-    //JavaScript代码区域
-    layui.use('element', function () {
-        var element = layui.element;
-
+    layui.use(['form'], function () {
+        var form = layui.form;
+        form.render();
     });
 </script>
 </body>
