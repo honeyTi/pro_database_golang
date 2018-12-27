@@ -13,3 +13,14 @@ func GetAllContent() ([]*GoodsType, error) {
 		return goodsAll, nil
 	}
 }
+func GetChose() ([]*GoodsList, error) {
+	o := orm.NewOrm()
+	qs := o.QueryTable("db_goods_list")
+	goodsList := make([] *GoodsList, 0)
+	_, err := qs.All(&goodsList)
+	if err != nil {
+		return nil, err
+	} else {
+		return goodsList, nil
+	}
+}

@@ -17,7 +17,7 @@ func init() {
 
 	database_url := beego.AppConfig.String("databaseUser") + ":" + beego.AppConfig.String("databasePass") +
 		"@tcp(" + beego.AppConfig.String("databaseUrls") + ":" + beego.AppConfig.String("databasePort") +
-		")/" + beego.AppConfig.String("databaseDB") + "?charset=utf8"
+		")/" + beego.AppConfig.String("databaseDB") + "?charset=utf8&loc=Local"
 
 	fmt.Println(database_url)
 
