@@ -16,7 +16,7 @@ type UserInfo struct {
 // 商品分类总体数据库字段表
 type GoodsType struct {
 	Id      int64
-	Month   time.Time `orm:"type(date)"`
+	Month   time.Time
 	TopName string
 	TwoName string
 	OrAuc   float64

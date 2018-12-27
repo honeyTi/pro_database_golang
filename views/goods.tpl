@@ -125,8 +125,24 @@
         });
 
         function GetDataall(chose1, chose2, timeStart, timeEnd) {
-            console.log(timeEnd);
-            console.log(timeStart);
+            $.ajax({
+                type: "get",
+                url: "/goods/getOption",
+                data: {
+                    chose1: chose1,
+                    chose2: chose2,
+                    timeStart: timeStart + " 00:00:00",
+                    timeEnd:timeEnd + " 00:00:00"
+                },
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    console.log(data)
+                },
+                error: function (err){
+                    console.log(err)
+                }
+            });
         }
     }()
 </script>

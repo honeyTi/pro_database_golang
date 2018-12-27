@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"database_web_pro/models"
+	"fmt"
 	"github.com/astaxie/beego"
 )
 
@@ -32,18 +33,29 @@ func (this *GoodsController) Get() {
 }
 
 func (this *GoodsController) GetOption() {
-	goodsTpye, err := models.GetAllContent()
+	chose1 := this.GetString("chose1")
+	chose2 := this.GetString("chose2")
+	timeStart := this.GetString("timeStart")
+	timeEnd := this.GetString("timeEnd")
+	//fmt.Println(chose2, chose1)
+	//timeLayout := "2006-01-02 15:04:05"
+	//loc, _ := time.LoadLocation("Local")
+	//theTime, _ := time.ParseInLocation(timeLayout, timeStart, loc)
+	//fmt.Println(theTime)
+	//fmt.Println(timeEnd)
+	goodType, err := models.GetAllContent(chose1,chose2,timeStart,timeEnd)
+	fmt.Println(goodType)
 	if err != nil {
 		this.Data["json"] = ReJSON{
 			Status: "error",
 			Code:   0,
-			Result: goodsTpye,
+			Result: goodType,
 		}
 	} else {
 		this.Data["json"] = ReJSON{
 			Status: "success",
 			Code:   1,
-			Result: goodsTpye,
+			Result: goodType,
 		}
 	}
 	this.ServeJSON()
