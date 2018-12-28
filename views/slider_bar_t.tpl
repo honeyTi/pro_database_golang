@@ -7,7 +7,7 @@
                 <a href="/"><span class="icon icon-gaishu"></span>总体概览</a>
             </li>
             <li {{if .IsDy}}class="layui-nav-item layui-nav-item-active" {{else}}class="layui-nav-item"{{end}}>
-                <a href=""><span class="icon icon-diyufenbu"></span>地域分析</a>
+                <a href="/area"><span class="icon icon-diyufenbu"></span>地域分析</a>
             </li>
             <li {{if .IsSp}}class="layui-nav-item layui-nav-item-active" {{else}}class="layui-nav-item"{{end}}>
                 <a href="/goods"><span class="icon icon-shangpin"></span>商品分析</a>

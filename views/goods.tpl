@@ -201,9 +201,7 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (result) {
-                    if (result.Code === 0) {
-                        barChart(result.Data)
-                    }
+                    barChart(result.Data)
                 },
                 error: function (err) {
                     console.log(err)
@@ -213,86 +211,102 @@
 
         // echarts图表展示
         function barChart(result) {
-            var date = [],bar = [],line = [],bar2=[],line2=[];
+            var date = [], bar = [], line = [], bar2 = [], line2 = [];
 
             var mapChart = echarts.init(document.getElementById('bar-chart1'));
             var mapChart2 = echarts.init(document.getElementById('bar-chart2'));
             // 按照时间对数据进行排序
-            var list = _.sortBy(result, function (arr) {
-                return arr.Month
-            });
-            list.forEach(function (data, index) {
-                date.push(data.Month.split("T")[0]);
-                line.push(data.OrAccZb*100);
-                bar.push((data.OrAcc / 100000000).toFixed(2));
-                line2.push(data.OrAucZb*100);
-                bar2.push((data.OrAuc / 100000000).toFixed(2));
-            });
-            barOption(mapChart, date, line, bar,$('#nextChose').val() + "网络零售额当期走势图");
-            barOption(mapChart2, date, line2, bar2,$('#nextChose').val() + "网络零售额累计走势图");
+            if (result === null) {
+                mapChart.clear();
+                mapChart.setOption({});
+                mapChart2.clear();
+                mapChart2.setOption({});
+            } else {
+                var list = _.sortBy(result, function (arr) {
+                    return arr.Month
+                });
+                list.forEach(function (data, index) {
+                    date.push(data.Month.split("T")[0]);
+                    line.push(data.OrAccZb * 100);
+                    bar.push((data.OrAcc / 100000000).toFixed(2));
+                    line2.push(data.OrAucZb * 100);
+                    bar2.push((data.OrAuc / 100000000).toFixed(2));
+                });
+                barOption(mapChart, date, line, bar, $('#nextChose').val() + "网络零售额当期走势图");
+                barOption(mapChart2, date, line2, bar2, $('#nextChose').val() + "网络零售额累计走势图");
+            }
+
         }
 
         // echartsoption通用
         function barOption(echartsDom, date, bar, line, title) {
             echartsDom.clear();
             echartsDom.setOption(
-                {
-                    color:['#3398DB', '#63A1A9'],
-                    title:{
-                        text:title,
-                        left:"center"
-                    },
-                    tooltip: {
-                        trigger: 'axis'
-                    },
-                    xAxis: {
-                        type: 'category',
-                        data: date
-                    },
-                    yAxis: [
-                        {
-                            type: 'value',
-                            name:"绝对量（亿元）"
+                    {
+                        color: ['#008000'],
+                        title: {
+                            text: title,
+                            left: "center"
                         },
-                        {
-                            type: 'value',
-                            name:"占比（%）"
-                        }
-                    ],
-                    dataZoom: [{
-                        type: 'inside',
-                        start: 20,
-                        end: 70
-                    }, {
-                        start: 20,
-                        end: 70,
-                        handleSize: '80%',
-                        handleStyle: {
-                            color: '#fff',
-                            shadowBlur: 3,
-                            shadowColor: 'rgba(0, 0, 0, 1)',
-                            shadowOffsetX: 2,
-                            shadowOffsetY: 2
-                        }
-                    }],
-                    series: [
-                        {
-                            name: '绝对量',
-                            type: 'bar',
-                            barWidth: '50%',
-                            itemStyle:{
-                                barBorderRadius: 5
+                        tooltip: {
+                            trigger: 'axis'
+                        },
+                        xAxis: {
+                            type: 'category',
+                            data: date
+                        },
+                        yAxis: [
+                            {
+                                type: 'value',
+                                name: "绝对量（亿元）"
                             },
-                            data: bar
-                        },
-                        {
-                            name: '占比',
-                            yAxisIndex: 1,
-                            type: 'line',
-                            data: line
-                        }
-                    ]
-                }
+                            {
+                                type: 'value',
+                                name: "占比（%）"
+                            }
+                        ],
+                        dataZoom: [{
+                            type: 'inside',
+                            start: 20,
+                            end: 70
+                        }, {
+                            start: 20,
+                            end: 70,
+                            handleSize: '80%',
+                            handleStyle: {
+                                color: '#fff',
+                                shadowBlur: 3,
+                                shadowColor: 'rgba(0, 0, 0, 1)',
+                                shadowOffsetX: 2,
+                                shadowOffsetY: 2
+                            }
+                        }],
+                        series: [
+                            {
+                                name: '绝对量',
+                                type: 'bar',
+                                barWidth: '50%',
+                                itemStyle: {
+                                    barBorderRadius: 5,
+                                    color: new echarts.graphic.LinearGradient(
+                                            0, 0, 0, 1,
+                                            [
+                                                {offset: 0, color: '#7bc1f9'},
+                                                {offset: 1, color: '#2F9cf3'}
+
+                                            ]
+                                    )
+                                },
+                                data: bar
+                            },
+                            {
+                                name: '占比',
+                                yAxisIndex: 1,
+                                type: 'line',
+                                data: line
+                            }
+                        ]
+                    }
             )
         }
     }()

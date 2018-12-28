@@ -13,4 +13,5 @@ func init() {
 	beego.Router("/goods/getOption", &controllers.GoodsController{}, "get:GetOption")
 	beego.Router("/goods/getChose", &controllers.GoodsController{}, "get:GetAllChose")
 	beego.Router("/goods/GetCharts", &controllers.GoodsController{}, "get:GetCharts")
+	beego.Router("/area", &controllers.AreaController{})
 }
