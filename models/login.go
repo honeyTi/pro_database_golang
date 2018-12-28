@@ -33,5 +33,4 @@ func UserRegister(uname, pwd string) error {
 	} else {
 		return err
 	}
-
 }

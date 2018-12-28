@@ -101,7 +101,7 @@ html, body {
     margin-right: 10px;
 }
 .layui-nav-item-active {
-    background: #5377FE;
+    background: #009688;
 }
 /*首页样式*/
 .search-padding {
@@ -110,4 +110,23 @@ html, body {
 }
 .search-padding .layui-form-item {
     margin-bottom: 0px;
+}
+.table-content {
+    width: 100%;
+    min-height: 400px;
+    border-bottom: 1px solid #E6E6E6;
+    padding: 10px 10px 20px;
+}
+.chartMap {
+    width: 100%;
+    height: 400px;
+    padding: 20px;
+}
+.chartMap div {
+    width: 50%;
+    height: 360px;
+    float: left;
+}
+.chartMap div:first-child {
+    border-right: 1px solid #E6E6E6;
 }

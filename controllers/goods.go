@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"database_web_pro/models"
-	"fmt"
 	"github.com/astaxie/beego"
+	"strconv"
 )
 
 type GoodsController struct {
@@ -11,15 +11,17 @@ type GoodsController struct {
 }
 
 type ReJSON struct {
-	Status string
-	Code   int64
-	Result []*models.GoodsType
+	Msg   string
+	Code  int64
+	Count int
+	Data  []*models.GoodsType
 }
 
 type GoodsTypeList struct {
-	Status string
-	Code   int64
-	Result []*models.GoodsList
+	Msg   string
+	Code  int64
+	Count int
+	Data  []*models.GoodsList
 }
 
 func (this *GoodsController) Get() {
@@ -37,25 +39,50 @@ func (this *GoodsController) GetOption() {
 	chose2 := this.GetString("chose2")
 	timeStart := this.GetString("timeStart")
 	timeEnd := this.GetString("timeEnd")
-	//fmt.Println(chose2, chose1)
-	//timeLayout := "2006-01-02 15:04:05"
-	//loc, _ := time.LoadLocation("Local")
-	//theTime, _ := time.ParseInLocation(timeLayout, timeStart, loc)
-	//fmt.Println(theTime)
-	//fmt.Println(timeEnd)
-	goodType, err := models.GetAllContent(chose1,chose2,timeStart,timeEnd)
-	fmt.Println(goodType)
+	page,_ := strconv.Atoi(this.GetString("page"))
+	limit,_ := strconv.Atoi(this.GetString("limit"))
+	goodType, err := models.GetAllContent(chose1, chose2, timeStart, timeEnd)
+	pageEnd := page*limit
+	if pageEnd > len(goodType) {
+		pageEnd = len(goodType)
+	}
 	if err != nil {
 		this.Data["json"] = ReJSON{
-			Status: "error",
-			Code:   0,
-			Result: goodType,
+			Msg:   "暂无内容",
+			Code:  1,
+			Count: 0,
+			Data:  goodType,
 		}
 	} else {
 		this.Data["json"] = ReJSON{
-			Status: "success",
-			Code:   1,
-			Result: goodType,
+			Msg:   "success",
+			Code:  0,
+			Count: len(goodType),
+			Data:  goodType[(page-1)*limit :  pageEnd],
+		}
+	}
+	this.ServeJSON()
+}
+
+func (this *GoodsController) GetCharts() {
+	chose1 := this.GetString("chose1")
+	chose2 := this.GetString("chose2")
+	timeStart := this.GetString("timeStart")
+	timeEnd := this.GetString("timeEnd")
+	goodType, err := models.GetAllContent(chose1, chose2, timeStart, timeEnd)
+	if err != nil {
+		this.Data["json"] = ReJSON{
+			Msg:   "暂无内容",
+			Code:  1,
+			Count: 0,
+			Data:  goodType,
+		}
+	} else {
+		this.Data["json"] = ReJSON{
+			Msg:   "success",
+			Code:  0,
+			Count: len(goodType),
+			Data:  goodType,
 		}
 	}
 	this.ServeJSON()
@@ -65,15 +92,17 @@ func (this *GoodsController) GetAllChose() {
 	goodsList, err := models.GetChose()
 	if err != nil {
 		this.Data["json"] = GoodsTypeList{
-			Status: "error",
-			Code:   0,
-			Result: goodsList,
+			Msg:   "没有查询到数据",
+			Code:  1,
+			Count: 0,
+			Data:  goodsList,
 		}
 	} else {
 		this.Data["json"] = GoodsTypeList{
-			Status: "success",
-			Code:   1,
-			Result: goodsList,
+			Msg:   "success",
+			Code:  0,
+			Count: len(goodsList),
+			Data:  goodsList,
 		}
 	}
 	this.ServeJSON()
