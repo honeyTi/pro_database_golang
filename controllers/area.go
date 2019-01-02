@@ -3,6 +3,7 @@ package controllers
 import (
 	"database_web_pro/models"
 	"github.com/astaxie/beego"
+	"strconv"
 )
 
 type AreaController struct {
@@ -62,7 +63,13 @@ func (this *AreaController) GetTableMap() {
 	county := this.GetString("county")
 	ts := this.GetString("timeStart")
 	te := this.GetString("timeEnd")
+	page, _ := strconv.Atoi(this.GetString("page"))
+	limit, _ := strconv.Atoi(this.GetString("limit"))
 	countyAnalysis, err := models.GetTableMap(prov, city, county, ts, te)
+	pageEnd := page * limit
+	if pageEnd > len(countyAnalysis) {
+		pageEnd = len(countyAnalysis)
+	}
 	if err != nil {
 		this.Data["json"] = TableMap{
 			Msg:   "暂无内容",
@@ -75,7 +82,7 @@ func (this *AreaController) GetTableMap() {
 			Msg:   "成功",
 			Code:  0,
 			Count: len(countyAnalysis),
-			Data:  countyAnalysis,
+			Data:  countyAnalysis[(page-1)*limit : pageEnd],
 		}
 	}
 	this.ServeJSON()
