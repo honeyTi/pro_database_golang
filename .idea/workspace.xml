@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e00c716-0c32-4388-8488-a3460289ff09" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/models/area.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/area.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/area.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/goods.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/goods.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/models.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/models.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/area.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/area.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/area.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/views/area.tpl" afterDir="false" />
     </list>
@@ -56,7 +53,7 @@
           <entry key="js" value="6" />
           <entry key="png" value="3" />
           <entry key="s" value="1" />
-          <entry key="tpl" value="35" />
+          <entry key="tpl" value="36" />
           <entry key="ts" value="1" />
         </counts>
       </usages-collector>
@@ -64,7 +61,7 @@
         <counts>
           <entry key="CSS" value="6" />
           <entry key="Go" value="59" />
-          <entry key="HTML" value="32" />
+          <entry key="HTML" value="33" />
           <entry key="Image" value="3" />
           <entry key="JavaScript" value="6" />
           <entry key="PLAIN_TEXT" value="2" />
@@ -77,16 +74,16 @@
         <counts>
           <entry key="conf" value="16" />
           <entry key="css" value="1318" />
-          <entry key="go" value="5402" />
-          <entry key="tpl" value="7490" />
+          <entry key="go" value="6223" />
+          <entry key="tpl" value="7919" />
           <entry key="txt" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="1318" />
-          <entry key="Go" value="5402" />
-          <entry key="HTML" value="7465" />
+          <entry key="Go" value="6223" />
+          <entry key="HTML" value="7894" />
           <entry key="PLAIN_TEXT" value="34" />
           <entry key="XHTML" value="25" />
         </counts>
@@ -103,8 +100,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routers/router.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="16" column="18" lean-forward="true" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="35" />
+            <state relative-caret-position="340">
+              <caret line="17" column="18" lean-forward="true" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="35" />
               <folding>
                 <element signature="e#17#87#0" expanded="true" />
               </folding>
@@ -115,17 +112,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/goods.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="63" column="4" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/index.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="15" selection-end-column="5" />
+            <state relative-caret-position="220">
+              <caret line="42" column="52" lean-forward="true" selection-start-line="42" selection-start-column="52" selection-end-line="42" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -139,11 +127,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/models.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="60" column="20" selection-start-line="60" selection-start-column="20" selection-end-line="60" selection-end-column="20" />
+            <state relative-caret-position="428">
+              <caret line="60" column="25" lean-forward="true" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
               <folding>
                 <element signature="e#16#66#0" expanded="true" />
               </folding>
@@ -151,11 +139,30 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/area.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2271">
-              <caret line="136" column="15" lean-forward="true" selection-start-line="136" selection-start-column="15" selection-end-line="136" selection-end-column="15" />
+            <state relative-caret-position="288">
+              <caret line="202" column="74" lean-forward="true" selection-start-line="202" selection-start-column="74" selection-end-line="202" selection-end-column="74" />
+              <folding>
+                <element signature="e#1838#2385#0#HTML" />
+                <element signature="e#2739#2926#0#HTML" />
+                <element signature="e#2449#2811#0#HTML" />
+                <element signature="e#2890#2914#0#HTML" />
+                <element signature="e#3879#3903#0#HTML" />
+                <element signature="e#4336#4360#0#HTML" />
+                <element signature="e#5231#5255#0#HTML" />
+                <element signature="e#5528#5552#0#HTML" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/footer_t.tpl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="16" selection-start-column="10" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -163,11 +170,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/goods.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1229">
-              <caret line="39" column="12" lean-forward="true" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="56" />
+            <state relative-caret-position="226">
+              <caret line="149" lean-forward="true" selection-start-line="149" selection-end-line="149" />
               <folding>
+                <element signature="n#style#0;n#span#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
                 <element signature="e#5135#6637#0#HTML" />
-                <element signature="e#6724#7363#0#HTML" />
                 <element signature="e#7422#8588#0#HTML" />
                 <element signature="e#8680#11391#0#HTML" />
               </folding>
@@ -178,8 +185,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/area.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="541">
-              <caret line="46" column="20" lean-forward="true" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="20" />
+            <state relative-caret-position="208">
+              <caret line="58" column="39" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="39" />
               <folding>
                 <element signature="e#21#86#0" expanded="true" />
               </folding>
@@ -190,8 +197,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/area.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+            <state relative-caret-position="174">
+              <caret line="21" column="16" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="16" />
+              <folding>
+                <element signature="e#16#66#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -199,8 +209,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/goods.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="7" column="85" selection-start-line="7" selection-start-column="85" selection-end-line="7" selection-end-column="85" />
+            <state relative-caret-position="220">
+              <caret line="14" column="37" lean-forward="true" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -250,12 +260,12 @@
         <option value="$PROJECT_DIR$/static/css/main.css" />
         <option value="$PROJECT_DIR$/views/slider_bar_t.tpl" />
         <option value="$PROJECT_DIR$/models/goods.go" />
+        <option value="$PROJECT_DIR$/views/goods.tpl" />
+        <option value="$PROJECT_DIR$/models/models.go" />
         <option value="$PROJECT_DIR$/routers/router.go" />
         <option value="$PROJECT_DIR$/models/area.go" />
         <option value="$PROJECT_DIR$/controllers/area.go" />
-        <option value="$PROJECT_DIR$/views/goods.tpl" />
         <option value="$PROJECT_DIR$/views/area.tpl" />
-        <option value="$PROJECT_DIR$/models/models.go" />
       </list>
     </option>
   </component>
@@ -266,9 +276,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="953" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
+    <option name="x" value="569" />
+    <option name="y" value="25" />
+    <option name="width" value="1680" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -282,11 +293,6 @@
             <path>
               <item name="database_web_pro" type="b2602c69:ProjectViewProjectNode" />
               <item name="database_web_pro" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="database_web_pro" type="b2602c69:ProjectViewProjectNode" />
-              <item name="database_web_pro" type="462c0819:PsiDirectoryNode" />
-              <item name="conf" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="database_web_pro" type="b2602c69:ProjectViewProjectNode" />
@@ -388,10 +394,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="953" y="0" width="974" height="1047" extended-state="0" />
+    <frame x="569" y="25" width="1680" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.42231947" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13333334" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -403,7 +409,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.329718" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" x="-7" y="818" width="1870" height="138" id="Terminal" order="9" visible="true" weight="0.33223686" />
+      <window_info active="true" anchor="bottom" x="-7" y="818" width="1870" height="138" id="Terminal" order="9" visible="true" weight="0.32899022" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -572,13 +578,6 @@
         <state relative-caret-position="-240" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/footer_t.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-start-column="10" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/index.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="381">
@@ -656,73 +655,93 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routers/router.go">
+    <entry file="file://$PROJECT_DIR$/models/models.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="18" lean-forward="true" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="35" />
+        <state relative-caret-position="428">
+          <caret line="60" column="25" lean-forward="true" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
           <folding>
-            <element signature="e#17#87#0" expanded="true" />
+            <element signature="e#16#66#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/goods.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="7" column="85" selection-start-line="7" selection-start-column="85" selection-end-line="7" selection-end-column="85" />
+        <state relative-caret-position="220">
+          <caret line="14" column="37" lean-forward="true" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/goods.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="63" column="4" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="20" />
+        <state relative-caret-position="220">
+          <caret line="42" column="52" lean-forward="true" selection-start-line="42" selection-start-column="52" selection-end-line="42" selection-end-column="52" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/area.go">
+    <entry file="file://$PROJECT_DIR$/views/footer_t.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+        <state>
+          <caret column="16" selection-start-column="10" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/area.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="541">
-          <caret line="46" column="20" lean-forward="true" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="20" />
+        <state relative-caret-position="208">
+          <caret line="58" column="39" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="39" />
           <folding>
             <element signature="e#21#86#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/area.tpl">
+    <entry file="file://$PROJECT_DIR$/models/area.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2271">
-          <caret line="136" column="15" lean-forward="true" selection-start-line="136" selection-start-column="15" selection-end-line="136" selection-end-column="15" />
+        <state relative-caret-position="174">
+          <caret line="21" column="16" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="16" />
+          <folding>
+            <element signature="e#16#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routers/router.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="17" column="18" lean-forward="true" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="35" />
+          <folding>
+            <element signature="e#17#87#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/goods.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1229">
-          <caret line="39" column="12" lean-forward="true" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="56" />
+        <state relative-caret-position="226">
+          <caret line="149" lean-forward="true" selection-start-line="149" selection-end-line="149" />
           <folding>
+            <element signature="n#style#0;n#span#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
             <element signature="e#5135#6637#0#HTML" />
-            <element signature="e#6724#7363#0#HTML" />
             <element signature="e#7422#8588#0#HTML" />
             <element signature="e#8680#11391#0#HTML" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/models.go">
+    <entry file="file://$PROJECT_DIR$/views/area.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="60" column="20" selection-start-line="60" selection-start-column="20" selection-end-line="60" selection-end-column="20" />
+        <state relative-caret-position="288">
+          <caret line="202" column="74" lean-forward="true" selection-start-line="202" selection-start-column="74" selection-end-line="202" selection-end-column="74" />
           <folding>
-            <element signature="e#16#66#0" expanded="true" />
+            <element signature="e#1838#2385#0#HTML" />
+            <element signature="e#2739#2926#0#HTML" />
+            <element signature="e#2449#2811#0#HTML" />
+            <element signature="e#2890#2914#0#HTML" />
+            <element signature="e#3879#3903#0#HTML" />
+            <element signature="e#4336#4360#0#HTML" />
+            <element signature="e#5231#5255#0#HTML" />
+            <element signature="e#5528#5552#0#HTML" />
           </folding>
         </state>
       </provider>

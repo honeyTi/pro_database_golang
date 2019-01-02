@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="layui-inline">
-                    <span class="layui-btn submit-goods" type="button">查询</span>
+                    <span class="layui-btn submit-map" type="button">查询</span>
                 </div>
             </div>
         </form>
@@ -73,7 +73,9 @@
                 });
             });
         }
+
         loadLayui();
+
         // layui form元素初始化
         function formReset() {
             layui.use(['form'], function () {
@@ -81,6 +83,7 @@
                 form.render();
             })
         }
+
         var cityList;
         // 获取三级联动表数据
         $.ajax({
@@ -99,9 +102,10 @@
                 console.log(err)
             }
         });
+
         // 三级联动效果
         function choseMap(data) {
-            var province = [],content = "";
+            var province = [], content = "";
             data.forEach(function (ele, index) {
                 province.push(ele.ProvinceName)
             });
@@ -112,8 +116,9 @@
             proChoseReset();
             cityChose(data, $('#prov-chose').val(), 1)
         }
+
         function cityChose(data, chose, init) {
-            var city = [],content = '';
+            var city = [], content = '';
             data.forEach(function (ele) {
                 if (ele.ProvinceName === chose) {
                     city.push(ele.CityName)
@@ -128,8 +133,9 @@
                 countyChose(data, $('#city-chose').val())
             }
         }
+
         function countyChose(data, chose) {
-            var county = [],content = '';
+            var county = [], content = '';
             data.forEach(function (ele) {
                 if (ele.CityName === chose) {
                     county.push(ele.CountyName)
@@ -141,6 +147,7 @@
             $('#county-chose').html(content);
             formReset();
         }
+
         function proChoseReset() {
             layui.use(['form'], function () {
                 var form = layui.form;
@@ -150,6 +157,7 @@
                 })
             });
         }
+
         function cityChoseReset() {
             layui.use(['form'], function () {
                 var form = layui.form;
@@ -159,6 +167,68 @@
                 })
             });
         }
+
+        // 查询数据
+        $(".submit-map").click(function () {
+            var map = {
+                prov: $('#prov-chose').val(),
+                city: $('#city-chose').val(),
+                county: $('#county-chose').val(),
+                timeStart: $('#timeStart').val() + " 00:00:00",
+                timeEnd: $('#timeEnd').val() + " 00:00:00"
+            }
+            layui.use('table', function () {
+                var table = layui.table;
+
+                table.render({
+                    elem: '#test'
+                    , url: "/area/getTableMap"
+                    , where: map,
+                    toolbar: true,
+                    parseData: function (res) {
+                        return {
+                            "code": res.Code,
+                            "msg": res.Msg,
+                            "count": res.Count,
+                            "data": res.Data
+                        };
+                    }
+                    , cols: [
+                        [
+                            {field: 'zizeng', title: '序号', type: 'numbers', rowspan: 3},
+                            {field: 'DateMonth', title: '时间', rowspan: 3},
+                            {field: 'ProvinceName', title: '省份', rowspan: 3},
+                            {field: 'CityName', title: '市', rowspan: 3},
+                            {field: 'CountyName', title: '区/县', rowspan: 3},
+                            {align: 'center', title: '网络零售额', colspan: 6},
+                            {align: 'center', title: '实用商品网络销售额', colspan: 6}
+                        ],
+                        [
+                            {align: 'center', title: '当期', colspan: 3},
+                            {align: 'center', title: '累计', colspan: 3},
+                            {align: 'center', title: '当期', colspan: 3},
+                            {align: 'center', title: '累计', colspan: 3}
+                        ],
+                        [
+                            {field: 'OrCur', title: '绝对量', sort: true},
+                            {field: 'OrCurYoy', title: '同比', sort: true},
+                            {field: 'OrCurZb', title: '占比', sort: true},
+                            {field: 'OrAcc', title: '绝对量', sort: true},
+                            {field: 'OrAccYoy', title: '同比', sort: true},
+                            {field: 'OrAccZb', title: '占比', sort: true},
+                            {field: 'KindCur', title: '绝对量', sort: true},
+                            {field: 'KindCurYoy', title: '同比', sort: true},
+                            {field: 'KindCurZb', title: '占比', sort: true},
+                            {field: 'KindAcc', title: '绝对量', sort: true},
+                            {field: 'KindAccYoy', title: '同比', sort: true},
+                            {field: 'KindAccZb', title: '占比', sort: true},
+                        ]
+                    ],
+                    page: true,
+                    limit: 6
+                });
+            });
+        });
     }()
 </script>
 </body>

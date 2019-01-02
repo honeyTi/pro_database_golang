@@ -15,4 +15,5 @@ func init() {
 	beego.Router("/goods/GetCharts", &controllers.GoodsController{}, "get:GetCharts")
 	beego.Router("/area", &controllers.AreaController{})
 	beego.Router("/area/getCityList",&controllers.AreaController{},"get:GetCityList") // 获取城市三级表
+	beego.Router("/area/getTableMap",&controllers.AreaController{}, "get:GetTableMap") // 获取查询内容
 }
