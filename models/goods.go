@@ -1,14 +1,11 @@
 package models
 
 import (
-	"fmt"
 	"github.com/astaxie/beego/orm"
 	"time"
 )
 
 func GetAllContent(chose1, chose2, timeStart, timeEnd string) ([]*GoodsType, error) {
-	fmt.Println(chose1)
-	fmt.Println(chose2)
 	timeLayout := "2006-01-02 15:04:05"
 	loc, _ := time.LoadLocation("Local")
 	ts, _ := time.ParseInLocation(timeLayout, timeStart, loc)

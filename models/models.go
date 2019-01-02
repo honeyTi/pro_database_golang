@@ -24,11 +24,54 @@ type GoodsType struct {
 	OrAcc   float64
 	OrAccZb float64
 }
+
 // 商品分类清单列表
 type GoodsList struct {
-	Id int64
+	Id      int64
 	TopName string
 	TwoName string
+}
+
+// 地域码表
+type CityList struct {
+	Id           int64
+	ProvinceName string
+	ProvinceCode string
+	CityName     string
+	CityCode     string
+	CountyName   string
+	CountyCode   string
+}
+
+// 地域分析统计信息
+type CountyAnalysis struct {
+	Id            int64
+	DateMonth     time.Time
+	ProvinceName  string
+	ProvinceCode  string
+	CityName      string
+	CityCode      string
+	CountyName    string
+	CountyCode    string
+	OrCur         float64
+	OrCurZb       float64
+	OrCurYoy      float64
+	OrAcc         float64
+	OrAccZb       float64
+	OrAccYoy      float64
+	ShopNum       int64
+	ShopNumZb     float64
+	ShopNumYoy    float64
+	KindCur       float64
+	KindCurYoy    float64
+	KindAcc       float64
+	KindAccYoy    float64
+	NotKindCur    float64
+	NotKindCurYoy float64
+	NotKindAcc    float64
+	NotKindAccYoy float64
+	KindCurZb     float64
+	KindAccZb     float64
 }
 
 func InitDB() {
@@ -36,5 +79,7 @@ func InitDB() {
 		new(UserInfo),
 		new(GoodsType),
 		new(GoodsList),
+		new(CityList),
+		new(CountyAnalysis),
 	)
 }
