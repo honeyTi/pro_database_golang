@@ -19,4 +19,5 @@ func init() {
 	beego.Router("/area/getCityList",&controllers.AreaController{},"get:GetCityList") // 获取城市三级表
 	beego.Router("/area/getTableMap",&controllers.AreaController{}, "get:GetTableMap") // 获取查询内容
 	beego.Router("/area/getMapData", &controllers.AreaController{}, "get:GetMapData") // 获取地图数据，柱图数据
+	beego.Router("/trading", &controllers.TradingController{})
 }

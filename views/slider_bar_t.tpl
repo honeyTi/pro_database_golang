@@ -16,7 +16,7 @@
                 <a href=""><span class="icon icon-jiaoyi"></span>交易方式分析</a>
             </li>
             <li {{if .IsPt}}class="layui-nav-item layui-nav-item-active" {{else}}class="layui-nav-item"{{end}}>
-                <a href=""><span class="icon icon-pingtai"></span>交易平台分析</a>
+                <a href="/trading"><span class="icon icon-pingtai"></span>交易平台分析</a>
             </li>
             <li {{if .IsDw}}class="layui-nav-item layui-nav-item-active" {{else}}class="layui-nav-item"{{end}}>
                 <a href=""><span class="icon icon-duowei"></span>多维数据查询</a>

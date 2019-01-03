@@ -259,13 +259,8 @@
                 }
             })
             echartsDom.on('click', function (params) {
-                console.log(params)
                 data.forEach(function (ele) {
                     if (ele.DataMonth.split('T')[0] === params.name) {
-                        params.color.colorStops = [
-                            {offset: 0, color: "#7bc1f9"},
-                            {offset: 1, color: "#2F9cf3"}
-                        ];
                         if (params.componentSubType === "bar" && title === '网络零售当期走势图') {
                             $('.map-detail-1').html(
                                     '<p><span class="icon icon-dangqi"></span>当期网络销售额: <span class="red">' + ele.OrCur/100000000 + '</span> 亿元</p>' +
