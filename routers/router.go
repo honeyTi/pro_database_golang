@@ -7,7 +7,9 @@ import (
 
 func init() {
 	beego.Router("/login", &controllers.LoginController{})
-	beego.Router("/", &controllers.IndexController{})
+	beego.Router("/index", &controllers.IndexController{})
+	beego.Router("/index/getTotal", &controllers.IndexController{}, "get:GetTotalMap")
+	beego.Router("/index/GetCharts", &controllers.IndexController{}, "get:GetCharts")
 	beego.Router("/register", &controllers.RegisterController{})
 	beego.Router("/goods", &controllers.GoodsController{})
 	beego.Router("/goods/getOption", &controllers.GoodsController{}, "get:GetOption")
@@ -16,4 +18,5 @@ func init() {
 	beego.Router("/area", &controllers.AreaController{})
 	beego.Router("/area/getCityList",&controllers.AreaController{},"get:GetCityList") // 获取城市三级表
 	beego.Router("/area/getTableMap",&controllers.AreaController{}, "get:GetTableMap") // 获取查询内容
+	beego.Router("/area/getMapData", &controllers.AreaController{}, "get:GetMapData") // 获取地图数据，柱图数据
 }

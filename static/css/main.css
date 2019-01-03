@@ -130,3 +130,25 @@ html, body {
 .chartMap div:first-child {
     border-right: 1px solid #E6E6E6;
 }
+.chartMap-1 div:first-child {
+    width: 30%;
+}
+.chartMap-1 div:last-child {
+    width: 70%;
+}
+.map-detail-1 p, .map-detail-2 p{
+    line-height: 90px;
+}
+.map-detail-1 .icon, .map-detail-2 .icon {
+    font-size: 20px;
+    margin-right: 20px;
+}
+.map-detail-1, .map-detail-2 {
+    font-size: 16px;
+    padding: 0 20px;
+}
+.red {
+    color: #e4393c;
+    font-size: 26px;
+    font-weight: bold;
+}

@@ -73,6 +73,32 @@ type CountyAnalysis struct {
 	KindCurZb     float64
 	KindAccZb     float64
 }
+// 汇总表
+type DataCollect struct {
+	Id            int64
+	DataMonth     time.Time
+	DataType      string
+	Name          string
+	OrCur         float64
+	OrCurZb       float64
+	OrCurYoy      float64
+	OrAcc         float64
+	OrAccZb       float64
+	OrAccYoy      float64
+	ShopNum       int64
+	ShopNumZb     float64
+	ShopNumYoy    float64
+	KindCur       float64
+	KindCurYoy    float64
+	KindAcc       float64
+	KindAccYoy    float64
+	NotKindCur    float64
+	NotKindCurYoy float64
+	NotKindAcc    float64
+	NotKindAccYoy float64
+	KindCurZb     float64
+	KindAccZb     float64
+}
 
 func InitDB() {
 	orm.RegisterModelWithPrefix("db_",
@@ -81,5 +107,6 @@ func InitDB() {
 		new(GoodsList),
 		new(CityList),
 		new(CountyAnalysis),
+		new(DataCollect),
 	)
 }

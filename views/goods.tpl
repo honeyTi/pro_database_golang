@@ -154,9 +154,9 @@
                 var table = layui.table;
 
                 table.render({
-                    elem: '#test'
-                    , url: "/goods/getOption"
-                    , where: {
+                    elem: '#test',
+                    url: "/goods/getOption",
+                    where: {
                         chose1: chose1,
                         chose2: chose2,
                         timeStart: timeStart + " 00:00:00",

@@ -4,7 +4,7 @@
         <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
         <ul class="layui-nav layui-nav-tree" lay-filter="test">
             <li {{if .IsSummarize}}class="layui-nav-item layui-nav-item-active" {{else}}class="layui-nav-item"{{end}}>
-                <a href="/"><span class="icon icon-gaishu"></span>总体概览</a>
+                <a href="/index"><span class="icon icon-gaishu"></span>总体概览</a>
             </li>
             <li {{if .IsDy}}class="layui-nav-item layui-nav-item-active" {{else}}class="layui-nav-item"{{end}}>
                 <a href="/area"><span class="icon icon-diyufenbu"></span>地域分析</a>

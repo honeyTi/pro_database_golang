@@ -87,3 +87,26 @@ func (this *AreaController) GetTableMap() {
 	}
 	this.ServeJSON()
 }
+// 获取地图柱状图数据
+func (this *AreaController) GetMapData() {
+	prov := this.GetString("prov")
+	ts := this.GetString("timeStart")
+	te := this.GetString("timeEnd")
+	countyAnalysis, err := models.GetMapData(prov, ts, te)
+	if err != nil {
+		this.Data["json"] = TableMap{
+			Msg:   "暂无内容",
+			Code:  1,
+			Count: 0,
+			Data:  countyAnalysis,
+		}
+	} else {
+		this.Data["json"] = TableMap{
+			Msg:   "成功",
+			Code:  0,
+			Count: len(countyAnalysis),
+			Data:  countyAnalysis,
+		}
+	}
+	this.ServeJSON()
+}

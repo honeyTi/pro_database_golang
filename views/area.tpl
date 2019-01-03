@@ -130,11 +130,11 @@
             $('#city-chose').html(content);
             cityChoseReset();
             if (init === 1) {
-                countyChose(data, $('#city-chose').val())
+                countyChose(data, $('#city-chose').val(), 1)
             }
         }
 
-        function countyChose(data, chose) {
+        function countyChose(data, chose, init) {
             var county = [], content = '';
             data.forEach(function (ele) {
                 if (ele.CityName === chose) {
@@ -146,6 +146,9 @@
             });
             $('#county-chose').html(content);
             formReset();
+            if (init === 1) {
+                $('.submit-map').click();
+            }
         }
 
         function proChoseReset() {
@@ -176,7 +179,7 @@
                 county: $('#county-chose').val(),
                 timeStart: $('#timeStart').val() + " 00:00:00",
                 timeEnd: $('#timeEnd').val() + " 00:00:00"
-            }
+            };
             layui.use('table', function () {
                 var table = layui.table;
 
@@ -228,7 +231,97 @@
                     limit: 6
                 });
             });
+            // 获取地图数据
+            $.ajax({
+                type: "get",
+                url: "/area/getMapData",
+                data: {
+                    prov: $('#prov-chose').val(),
+                    timeStart: $('#timeStart').val() + " 00:00:00",
+                    timeEnd: $('#timeEnd').val() + " 00:00:00"
+                },
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    mapDataReset(result.Data)
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            });
         });
+
+        // 地图数据
+        function mapDataReset(data) {
+            data.forEach(function (ele) {
+                console.log(ele)
+            })
+        }
+
+        function mapCharts() {
+
+            var option = {
+                baseOption: {
+                    timeline: {
+                        // y: 0,
+                        axisType: 'category',
+                        autoPlay: true,
+                        playInterval: 1000,
+                        data: []
+                    },
+                    tooltip: {},
+                    title: {
+                        subtext: '数据来自国家统计局'
+                    },
+                    visualMap: {
+                        min: 0,
+                        max: 1500,
+                        left: 'left',
+                        top: 'bottom',
+                        text: ['High', 'Low'],
+                        inRange: {
+                            color: ['#e0ffff', '#006edd']
+                        }
+                    },
+                    geo: {
+                        map: 'china',
+                        roam: true,
+                        label: {
+                            normal: {
+                                show: true,
+                                textStyle: {
+                                    color: 'rgba(0,0,0,0.4)'
+                                }
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                borderColor: 'rgba(0, 0, 0, 0.2)'
+                            },
+                            emphasis: {
+                                areaColor: null,
+                                shadowOffsetX: 0,
+                                shadowOffsetY: 0,
+                                shadowBlur: 20,
+                                borderWidth: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    },
+                    series: [
+                        {
+                            name: 'categoryA',
+                            type: 'map',
+                            geoIndex: 0,
+                            data: []
+                        }
+                    ]
+                },
+                options:{
+
+                }
+            }
+        }
     }()
 </script>
 </body>
