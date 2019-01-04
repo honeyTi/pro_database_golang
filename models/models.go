@@ -99,6 +99,11 @@ type DataCollect struct {
 	KindCurZb     float64
 	KindAccZb     float64
 }
+type TradingType struct {
+	Id int64
+	Types string
+	Trads string
+}
 
 func InitDB() {
 	orm.RegisterModelWithPrefix("db_",
@@ -108,5 +113,6 @@ func InitDB() {
 		new(CityList),
 		new(CountyAnalysis),
 		new(DataCollect),
+		new(TradingType),
 	)
 }
