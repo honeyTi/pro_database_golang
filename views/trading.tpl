@@ -42,6 +42,14 @@
 
             </div>
         </div>
+        <div class="chartMap chartMap-1 clearfix" style="border-top: 1px solid #E6E6E6">
+            <div class="map-detail-1">
+
+            </div>
+            <div id="bar-chart2">
+
+            </div>
+        </div>
     </div>
     {{template "footer"}}
 </div>
@@ -105,7 +113,6 @@
                     where: map,
                     toolbar: true,
                     parseData: function (res) {
-                        console.log(res)
                         return {
                             "code": res.Code,
                             "msg": res.Msg,
@@ -117,15 +124,12 @@
                         [
                             {field: 'zizeng', title: '序号', type: 'numbers', rowspan: 3},
                             {field: 'DataMonth', title: '时间', rowspan: 3},
-                            {field: 'Name', title: '时间', rowspan: 3},
-                            {align: 'center', title: '网络零售额', colspan: 6},
-                            {align: 'center', title: '实用商品网络销售额', colspan: 6}
+                            {field: 'Name', title: '平台', rowspan: 3},
+                            {align: 'center', title: '网络零售额', colspan: 6}
                         ],
                         [
                             {align: 'center', title: '当期', colspan: 3},
                             {align: 'center', title: '累计', colspan: 3},
-                            {align: 'center', title: '当期', colspan: 3},
-                            {align: 'center', title: '累计', colspan: 3}
                         ],
                         [
                             {field: 'OrCur', title: '绝对量', sort: true},
@@ -134,19 +138,124 @@
                             {field: 'OrAcc', title: '绝对量', sort: true},
                             {field: 'OrAccYoy', title: '同比', sort: true},
                             {field: 'OrAccZb', title: '占比', sort: true},
-                            {field: 'KindCur', title: '绝对量', sort: true},
-                            {field: 'KindCurYoy', title: '同比', sort: true},
-                            {field: 'KindCurZb', title: '占比', sort: true},
-                            {field: 'KindAcc', title: '绝对量', sort: true},
-                            {field: 'KindAccYoy', title: '同比', sort: true},
-                            {field: 'KindAccZb', title: '占比', sort: true},
                         ]
                     ],
                     page: true,
                     limit: 6
                 });
             });
+            // 请求饼图折线图数据
+            $.ajax({
+                type: "get",
+                url: "/trading/GetTradMap",
+                data: map,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    dataReset(result.Data);
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            });
         });
+        function dataReset(data) {
+            var list = _.sortBy(data, function (arr) {
+                return arr.DataMonth
+            });
+            var bar1 = {
+                date: [],
+                line: [],
+                bar:[]
+            };
+            var bar2 = {
+                date: [],
+                line: [],
+                bar:[]
+            };
+            list.forEach(function (data, index) {
+                bar1.date.push(data.DataMonth.split("T")[0]);
+                bar1.bar.push((data.OrCur / 100000000).toFixed(2));
+                bar1.line.push(data.OrCurYoy);
+                bar2.date.push(data.DataMonth.split("T")[0]);
+                bar2.bar.push((data.OrAcc / 100000000).toFixed(2));
+                bar2.line.push(data.OrAccYoy);
+            });
+            var barDom1 = echarts.init(document.getElementById('bar-chart1'));
+            var barDom2 = echarts.init(document.getElementById('bar-chart2'));
+            barOption(barDom1, bar1, $('#trad').val() + "网络零售额当期走势图");
+            barOption(barDom2, bar2, $('#trad').val() + "网络零售额累计走势图");
+        }
+        function barOption(echartsDom, map, title) {
+            echartsDom.clear();
+            echartsDom.setOption(
+                {
+                    color: ['#008000'],
+                    title: {
+                        text: title,
+                        left: "center"
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: map.date
+                    },
+                    yAxis: [
+                        {
+                            type: 'value',
+                            name: "绝对量（亿元）"
+                        },
+                        {
+                            type: 'value',
+                            name: "同比（%）"
+                        }
+                    ],
+                    dataZoom: [{
+                        type: 'inside',
+                        start: 20,
+                        end: 70
+                    }, {
+                        start: 20,
+                        end: 70,
+                        handleSize: '80%',
+                        handleStyle: {
+                            color: '#fff',
+                            shadowBlur: 3,
+                            shadowColor: 'rgba(0, 0, 0, 1)',
+                            shadowOffsetX: 2,
+                            shadowOffsetY: 2
+                        }
+                    }],
+                    series: [
+                        {
+                            name: '绝对量',
+                            type: 'bar',
+                            barWidth: '50%',
+                            itemStyle: {
+                                barBorderRadius: 5,
+                                color: new echarts.graphic.LinearGradient(
+                                    0, 0, 0, 1,
+                                    [
+                                        {offset: 0, color: '#7bc1f9'},
+                                        {offset: 1, color: '#2F9cf3'}
+
+                                    ]
+                                )
+                            },
+                            data: map.bar
+                        },
+                        {
+                            name: '同比',
+                            yAxisIndex: 1,
+                            type: 'line',
+                            data: map.line
+                        }
+                    ]
+                }
+            )
+        }
     }()
 </script>
 </body>
