@@ -21,4 +21,7 @@ func init() {
 	beego.Router("/area/getTableMap",&controllers.AreaController{}, "get:GetTableMap") // 获取查询内容
 	beego.Router("/area/getMapData", &controllers.AreaController{}, "get:GetMapData") // 获取地图数据，柱图数据
 	beego.Router("/trading", &controllers.TradingController{})
+	beego.Router("/trading/trad", &controllers.TradingController{}, "get:GetTrading")
+	beego.Router("/trading/tradDetail", &controllers.TradingController{},"get:GetTradDetail")
+	beego.Router("/trading/GetTradMap", &controllers.TradingController{}, "get:GetTradMap")
 }

@@ -3,6 +3,7 @@ package controllers
 import (
 	"database_web_pro/models"
 	"github.com/astaxie/beego"
+	"strconv"
 )
 
 type TradingController struct {
@@ -13,7 +14,7 @@ type TradingMap struct {
 	Msg   string
 	Code  int
 	Count int
-	Data  []*models.DataCollect
+	Data  []*models.TradingType
 }
 
 func (this *TradingController) Get() {
@@ -27,5 +28,73 @@ func (this *TradingController) Get() {
 }
 
 func (this *TradingController) GetTrading()  {
-
+	trads, err := models.AllTrads()
+	if err != nil {
+		this.Data["json"] = TradingMap{
+			Msg:"fail",
+			Code:1,
+			Count:0,
+			Data:trads,
+		}
+	} else {
+		this.Data["json"] = TradingMap{
+			Msg:"successful",
+			Code:0,
+			Count:len(trads),
+			Data:trads,
+		}
+	}
+	this.ServeJSON()
+}
+func (this *TradingController) GetTradDetail() {
+	types := this.GetString("types")
+	list := this.GetString("list")
+	timeStart := this.GetString("timeStart")
+	timeEnd := this.GetString("timeEnd")
+	page, _ := strconv.Atoi(this.GetString("page"))
+	limit, _ := strconv.Atoi(this.GetString("limit"))
+	dataTotal, err := models.GetTradData(types, list, timeStart, timeEnd)
+	pageEnd := page * limit
+	if pageEnd > len(dataTotal) {
+		pageEnd = len(dataTotal)
+	}
+	if err != nil {
+		this.Data["json"] = TotalData{
+			Msg:   "暂无内容",
+			Code:  1,
+			Count: 0,
+			Data:  dataTotal,
+		}
+	} else {
+		this.Data["json"] = TotalData{
+			Msg:   "成功",
+			Code:  0,
+			Count: len(dataTotal),
+			Data:  dataTotal[(page-1)*limit : pageEnd],
+		}
+	}
+	this.ServeJSON()
+}
+func (this *TradingController) GetTradMap() {
+	types := this.GetString("types")
+	list := this.GetString("list")
+	timeStart := this.GetString("timeStart")
+	timeEnd := this.GetString("timeEnd")
+	dataTotal, err := models.GetTradData(types, list, timeStart, timeEnd)
+	if err != nil {
+		this.Data["json"] = TotalData{
+			Msg:   "暂无内容",
+			Code:  1,
+			Count: 0,
+			Data:  dataTotal,
+		}
+	} else {
+		this.Data["json"] = TotalData{
+			Msg:   "成功",
+			Code:  0,
+			Count: len(dataTotal),
+			Data:  dataTotal,
+		}
+	}
+	this.ServeJSON()
 }
