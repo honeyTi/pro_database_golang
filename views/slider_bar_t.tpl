@@ -13,7 +13,7 @@
                 <a href="/goods"><span class="icon icon-shangpin"></span>商品分析</a>
             </li>
             <li {{if .IsJy}}class="layui-nav-item layui-nav-item-active" {{else}}class="layui-nav-item"{{end}}>
-                <a href=""><span class="icon icon-jiaoyi"></span>交易方式分析</a>
+                <a href="/transaction"><span class="icon icon-jiaoyi"></span>交易方式分析</a>
             </li>
             <li {{if .IsPt}}class="layui-nav-item layui-nav-item-active" {{else}}class="layui-nav-item"{{end}}>
                 <a href="/trading"><span class="icon icon-pingtai"></span>交易平台分析</a>
