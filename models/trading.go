@@ -32,3 +32,19 @@ func GetTradData(types,list, timeStart, timeEnd string) ([] *DataCollect, error)
 		return dataCollect, nil
 	}
 }
+// 获取占比数据
+func GetTradZbMap(types, timeStart, timeEnd string) ([] *TradAnalysis, error) {
+	timeLayout := "2006-01-02 15:04:05"
+	loc, _ := time.LoadLocation("Local")
+	ts, _ := time.ParseInLocation(timeLayout, timeStart, loc)
+	te, _ := time.ParseInLocation(timeLayout, timeEnd, loc)
+	o := orm.NewOrm()
+	qs := o.QueryTable("db_trad_analysis").Filter("types", types).Filter("data_month__gt", ts).Filter("data_month__lt", te).Limit(-1)
+	tradZb := make([] *TradAnalysis, 0)
+	_, err := qs.All(&tradZb)
+	if err != nil {
+		return nil, err
+	} else {
+		return tradZb, nil
+	}
+}

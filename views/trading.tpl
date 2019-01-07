@@ -3,8 +3,8 @@
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
-    {{template "navbar" .}}
-    {{template "slider" .}}
+{{template "navbar" .}}
+{{template "slider" .}}
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <form class="layui-form search-padding" action="">
@@ -34,24 +34,22 @@
             <table class="layui-hide" id="test"></table>
         </div>
         <!-- charts图 -->
-        <div class="chartMap chartMap-1 clearfix">
-            <div class="map-detail-1">
+        <div class="chartMap clearfix">
+            <div id="pie-1">
 
             </div>
             <div id="bar-chart1">
 
             </div>
         </div>
-        <div class="chartMap chartMap-1 clearfix" style="border-top: 1px solid #E6E6E6">
-            <div class="map-detail-1">
-
+        <div class="chartMap clearfix" style="border-top: 1px solid #E6E6E6">
+            <div id="pie-2">
             </div>
             <div id="bar-chart2">
-
             </div>
         </div>
     </div>
-    {{template "footer"}}
+{{template "footer"}}
 </div>
 <script>
     +function () {
@@ -72,6 +70,7 @@
                 });
             });
         }
+
         loadLayui();
         // 获取下拉选项
         $.ajax({
@@ -87,16 +86,18 @@
                 console.log(err);
             }
         });
+
         // 下拉选项获取
         function chosen(data) {
             var content = '';
             data.forEach(function (ele) {
-                content +=  `<option value="` + ele.Trads + `">` + ele.Trads + `</option>`
+                content += `<option value="` + ele.Trads + `">` + ele.Trads + `</option>`
             });
             $('#trad').html(content);
             loadLayui();
             $('.submit-map').click();
         }
+
         // 获取平台数据
         $('.submit-map').click(function () {
             var map = {
@@ -158,7 +159,27 @@
                     console.log(err)
                 }
             });
+            // 饼图占比
+            $.ajax({
+                type: "get",
+                url: "/trading/GetTradZb",
+                data: {
+                    timeStart: $('#timeStart').val() + " 00:00:00",
+                    timeEnd: $('#timeEnd').val() + " 00:00:00",
+                    trad: $('#trad').val(),
+                    types: "当期"
+                },
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    pieData(result.Data);
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            });
         });
+
         function dataReset(data) {
             var list = _.sortBy(data, function (arr) {
                 return arr.DataMonth
@@ -166,12 +187,12 @@
             var bar1 = {
                 date: [],
                 line: [],
-                bar:[]
+                bar: []
             };
             var bar2 = {
                 date: [],
                 line: [],
-                bar:[]
+                bar: []
             };
             list.forEach(function (data, index) {
                 bar1.date.push(data.DataMonth.split("T")[0]);
@@ -186,74 +207,171 @@
             barOption(barDom1, bar1, $('#trad').val() + "网络零售额当期走势图");
             barOption(barDom2, bar2, $('#trad').val() + "网络零售额累计走势图");
         }
+
         function barOption(echartsDom, map, title) {
             echartsDom.clear();
             echartsDom.setOption(
-                {
-                    color: ['#008000'],
-                    title: {
-                        text: title,
-                        left: "center"
-                    },
-                    tooltip: {
-                        trigger: 'axis'
-                    },
-                    xAxis: {
-                        type: 'category',
-                        data: map.date
-                    },
-                    yAxis: [
-                        {
-                            type: 'value',
-                            name: "绝对量（亿元）"
+                    {
+                        color: ['#008000'],
+                        title: {
+                            text: title,
+                            left: "center"
                         },
-                        {
-                            type: 'value',
-                            name: "同比（%）"
-                        }
-                    ],
-                    dataZoom: [{
-                        type: 'inside',
-                        start: 20,
-                        end: 70
-                    }, {
-                        start: 20,
-                        end: 70,
-                        handleSize: '80%',
-                        handleStyle: {
-                            color: '#fff',
-                            shadowBlur: 3,
-                            shadowColor: 'rgba(0, 0, 0, 1)',
-                            shadowOffsetX: 2,
-                            shadowOffsetY: 2
-                        }
-                    }],
-                    series: [
-                        {
-                            name: '绝对量',
-                            type: 'bar',
-                            barWidth: '50%',
-                            itemStyle: {
-                                barBorderRadius: 5,
-                                color: new echarts.graphic.LinearGradient(
-                                    0, 0, 0, 1,
-                                    [
-                                        {offset: 0, color: '#7bc1f9'},
-                                        {offset: 1, color: '#2F9cf3'}
-
-                                    ]
-                                )
+                        tooltip: {
+                            trigger: 'axis'
+                        },
+                        xAxis: {
+                            type: 'category',
+                            data: map.date
+                        },
+                        yAxis: [
+                            {
+                                type: 'value',
+                                name: "绝对量（亿元）"
                             },
-                            data: map.bar
-                        },
-                        {
-                            name: '同比',
-                            yAxisIndex: 1,
-                            type: 'line',
-                            data: map.line
+                            {
+                                type: 'value',
+                                name: "同比（%）"
+                            }
+                        ],
+                        dataZoom: [{
+                            type: 'inside',
+                            start: 20,
+                            end: 70
+                        }, {
+                            start: 20,
+                            end: 70,
+                            handleSize: '80%',
+                            handleStyle: {
+                                color: '#fff',
+                                shadowBlur: 3,
+                                shadowColor: 'rgba(0, 0, 0, 1)',
+                                shadowOffsetX: 2,
+                                shadowOffsetY: 2
+                            }
+                        }],
+                        series: [
+                            {
+                                name: '绝对量',
+                                type: 'bar',
+                                barWidth: '50%',
+                                itemStyle: {
+                                    barBorderRadius: 5,
+                                    color: new echarts.graphic.LinearGradient(
+                                            0, 0, 0, 1,
+                                            [
+                                                {offset: 0, color: '#7bc1f9'},
+                                                {offset: 1, color: '#2F9cf3'}
+                                            ]
+                                    )
+                                },
+                                data: map.bar
+                            },
+                            {
+                                name: '同比',
+                                yAxisIndex: 1,
+                                type: 'line',
+                                data: map.line
+                            }
+                        ]
+                    }
+            )
+        }
+
+        function pieData(data) {
+            var date = [];
+            data.forEach(function (ele) {
+                date.push(ele.DataMonth.split("T")[0])
+            });
+            var dom = echarts.init(document.getElementById('pie-1'));
+            var dom2 = echarts.init(document.getElementById('pie-2'))
+            pieOption(dom, date, data, "当期网络销售额分交易平台占比");
+            pieOption(dom2, date, data, "网络销售额累计分交易平台占比");
+        }
+
+        function pieOption(dom, date, result, title) {
+            var seriesMap = [];
+            var tradMap = {
+                Tb: "淘宝网",
+                Sn: "苏宁易购",
+                Tm: "天猫商城",
+                Wph: "唯品会",
+                Ymx: "亚马逊(中国)",
+                Ddw: "当当网",
+                Gm: "国美在线",
+                Jd: "京东商城",
+                Jm: "聚美优品",
+                Qt: "其他",
+                Bbw: "贝贝网",
+                Sk: "寺库网"
+            };
+            result.forEach(function (ele) {
+                seriesMap.push({
+                            title: {
+                                text: ele.DataMonth.split("T")[0] + title,
+                                left: 'center'
+                            },
+                            series: {
+                                data: [
+                                    {value: ele.Tb, name: tradMap['Tb']},
+                                    {value: ele.Sn, name: tradMap['Sn']},
+                                    {value: ele.Tm, name: tradMap['Tm']},
+                                    {value: ele.Wph, name: tradMap['Wph']},
+                                    {value: ele.Ymx, name: tradMap['Ymx']},
+                                    {value: ele.Ddw, name: tradMap['Ddw']},
+                                    {value: ele.Gm, name: tradMap['Gm']},
+                                    {value: ele.Jm, name: tradMap['Jm']},
+                                    {value: ele.Jd, name: tradMap['Jd']},
+                                    {value: ele.Qt, name: tradMap['Qt']},
+                                    {value: ele.Bbw, name: tradMap['Bbw']},
+                                    {value: ele.Sk, name: tradMap['Sk']}
+                                ]
+                            }
                         }
-                    ]
-                }
+                )
+            });
+            dom.clear();
+            dom.setOption({
+                        baseOption: {
+                            timeline: {
+                                axisType: 'category',
+                                autoPlay: true,
+                                playInterval: 2000,
+                                data: date
+                            },
+                            tooltip: {
+                                trigger: 'item',
+                                formatter: "{a} <br/>{b}: {c} ({d}%)"
+                            },
+                            legend: {
+                                orient: 'vertical',
+                                x: 'left',
+                                data: [
+                                    '苏宁易购',
+                                    '淘宝网',
+                                    '天猫商城',
+                                    '唯品会',
+                                    '亚马逊(中国)',
+                                    '当当网',
+                                    '国美在线',
+                                    '京东商城',
+                                    '聚美优品',
+                                    '其他',
+                                    '贝贝网',
+                                    '寺库网'
+                                ]
+                            },
+                            series: [
+                                {
+                                    type: 'pie',
+                                    radius: ['30%', '50%'],
+                                    avoidLabelOverlap: false,
+                                    data: seriesMap[0].data
+                                }
+                            ]
+                        },
+                        options: seriesMap
+                    }
             )
         }
     }()

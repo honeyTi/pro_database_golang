@@ -24,4 +24,5 @@ func init() {
 	beego.Router("/trading/trad", &controllers.TradingController{}, "get:GetTrading")
 	beego.Router("/trading/tradDetail", &controllers.TradingController{},"get:GetTradDetail")
 	beego.Router("/trading/GetTradMap", &controllers.TradingController{}, "get:GetTradMap")
+	beego.Router("/trading/GetTradZb", &controllers.TradingController{}, "get:GetTradZb")
 }

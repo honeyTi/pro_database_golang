@@ -73,6 +73,7 @@ type CountyAnalysis struct {
 	KindCurZb     float64
 	KindAccZb     float64
 }
+
 // 汇总表
 type DataCollect struct {
 	Id            int64
@@ -99,10 +100,31 @@ type DataCollect struct {
 	KindCurZb     float64
 	KindAccZb     float64
 }
+
+// 平台类别
 type TradingType struct {
-	Id int64
+	Id    int64
 	Types string
 	Trads string
+}
+
+// 平台占比分析
+type TradAnalysis struct {
+	Id        int64
+	DataMonth time.Time
+	Types     string
+	Tb        float64
+	Jd        float64
+	Sn        float64
+	Tm        float64
+	Wph       float64
+	Ymx       float64
+	Bbw       float64
+	Gm        float64
+	Jm        float64
+	Sk        float64
+	Qt        float64
+	Ddw       float64
 }
 
 func InitDB() {
@@ -114,5 +136,6 @@ func InitDB() {
 		new(CountyAnalysis),
 		new(DataCollect),
 		new(TradingType),
+		new(TradAnalysis),
 	)
 }

@@ -16,6 +16,12 @@ type TradingMap struct {
 	Count int
 	Data  []*models.TradingType
 }
+type ZbTrad struct {
+	Msg string
+	Code int
+	Count int
+	Data []*models.TradAnalysis
+}
 
 func (this *TradingController) Get() {
 	if CheckAccount(this.Ctx) {
@@ -94,6 +100,29 @@ func (this *TradingController) GetTradMap() {
 			Code:  0,
 			Count: len(dataTotal),
 			Data:  dataTotal,
+		}
+	}
+	this.ServeJSON()
+}
+
+func (this *TradingController) GetTradZb() {
+	timeStart := this.GetString("timeStart")
+	timeEnd := this.GetString("timeEnd")
+	types := this.GetString("types")
+	tradZb, err := models.GetTradZbMap(types, timeStart, timeEnd)
+	if err != nil {
+		this.Data["json"] = ZbTrad{
+			Msg:   "暂无内容",
+			Code:  1,
+			Count: 0,
+			Data:  tradZb,
+		}
+	} else {
+		this.Data["json"] = ZbTrad{
+			Msg:   "成功",
+			Code:  0,
+			Count: len(tradZb),
+			Data:  tradZb,
 		}
 	}
 	this.ServeJSON()
