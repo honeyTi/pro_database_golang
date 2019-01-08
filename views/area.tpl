@@ -236,14 +236,14 @@
                 type: "get",
                 url: "/area/getMapData",
                 data: {
-                    prov: $('#prov-chose').val(),
-                    timeStart: $('#timeStart').val() + " 00:00:00",
+                    prov: '省市',
                     timeEnd: $('#timeEnd').val() + " 00:00:00"
                 },
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (result) {
-                    mapDataReset(result.Data)
+                    console.log(result.Data);
+                    // mapDataReset(result.Data)
                 },
                 error: function (err) {
                     console.log(err)
@@ -259,7 +259,6 @@
         }
 
         function mapCharts() {
-
             var option = {
                 baseOption: {
                     timeline: {

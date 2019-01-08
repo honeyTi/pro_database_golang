@@ -26,9 +26,8 @@ func init() {
 
 func main() {
 	// orm操作数据库开启调试----后期可注释掉此条代码
-	orm.Debug = true
+	// orm.Debug = true
 	// 自动建表---如果表存在就跳过
 	orm.RunSyncdb("default", false,true)
-
 	beego.Run()
 }
