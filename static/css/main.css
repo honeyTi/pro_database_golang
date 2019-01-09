@@ -122,7 +122,7 @@ html, body {
     height: 400px;
     padding: 20px;
 }
-.chartMap div {
+.chartMap>div {
     width: 50%;
     height: 360px;
     float: left;
@@ -130,10 +130,10 @@ html, body {
 .chartMap div:first-child {
     border-right: 1px solid #E6E6E6;
 }
-.chartMap-1 div:first-child {
+.chartMap-1>div:first-child {
     width: 30%;
 }
-.chartMap-1 div:last-child {
+.chartMap-1>div:last-child {
     width: 70%;
 }
 .map-detail-1 p, .map-detail-2 p{
@@ -151,4 +151,16 @@ html, body {
     color: #e4393c;
     font-size: 26px;
     font-weight: bold;
+}
+.chartMap-2 {
+    height: 600px;
+}
+.chartMap-2>div {
+    height: 600px;
+}
+.chartMap-2>div:first-child {
+    width: 60%;
+}
+.chartMap-2>div:last-child {
+    width: 40%;
 }

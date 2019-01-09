@@ -42,7 +42,7 @@
         <div class="table-content">
             <table class="layui-hide" id="test"></table>
         </div>
-        <div class="chartMap clearfix">
+        <div class="chartMap chartMap-2 clearfix">
             <div id="bar-chart1">
 
             </div>
@@ -182,7 +182,6 @@
             };
             layui.use('table', function () {
                 var table = layui.table;
-
                 table.render({
                     elem: '#test'
                     , url: "/area/getTableMap"
@@ -195,8 +194,8 @@
                             "count": res.Count,
                             "data": res.Data
                         };
-                    }
-                    , cols: [
+                    },
+                    cols: [
                         [
                             {field: 'zizeng', title: '序号', type: 'numbers', rowspan: 3},
                             {field: 'DateMonth', title: '时间', rowspan: 3},
@@ -242,8 +241,7 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (result) {
-                    console.log(result.Data);
-                    // mapDataReset(result.Data)
+                    mapDataReset(result.Data)
                 },
                 error: function (err) {
                     console.log(err)
@@ -253,31 +251,77 @@
 
         // 地图数据
         function mapDataReset(data) {
+            var date = [], dataResetMap = [];
             data.forEach(function (ele) {
-                console.log(ele)
+                date.push(ele.DataMonth.split("T")[0])
+            });
+            date = _.uniq(date);
+            date.forEach(function (ele) {
+                dataResetMap.push(
+                        {
+                            date: ele,
+                            map: []
+                        }
+                );
             })
+            dataResetMap.forEach(function (list) {
+                data.forEach(function (ele) {
+                    if (ele.DataMonth.split("T")[0] === list.date) {
+                        list.map.push(
+                                {
+                                    name: ele.Name.indexOf("省") !== -1 ? ele.Name.split('省')[0] : ele.Name.indexOf("内蒙古") !== -1? "内蒙古" : ele.Name.substring(0, 2),
+                                    value: (ele.OrCur / 100000000).toFixed(2)
+                                }
+                        )
+                    }
+                })
+            })
+            console.log(dataResetMap);
+            var dom = echarts.init(document.getElementById('bar-chart1'));
+            mapCharts(dom, date, dataResetMap, "各省份当期网络零售额绝对量")
         }
 
-        function mapCharts() {
-            var option = {
+        function mapCharts(dom, date, dataMap, title) {
+            var seriseMap = [];
+            dataMap.forEach(function (ele) {
+                seriseMap.push({
+                    series: {
+                        name: ele.date,
+                        type: 'map',
+                        mapType: 'china',
+                        label: {
+                            normal: {
+                                show: false
+                            },
+                            emphasis: {
+                                show: true
+                            }
+                        },
+                        data: ele.map
+                    },
+                })
+            });
+            dom.clear();
+            dom.setOption({
                 baseOption: {
                     timeline: {
                         // y: 0,
                         axisType: 'category',
                         autoPlay: true,
                         playInterval: 1000,
-                        data: []
+                        data: date
                     },
                     tooltip: {},
                     title: {
-                        subtext: '数据来自国家统计局'
+                        text: title,
+                        left: 'center'
                     },
                     visualMap: {
                         min: 0,
                         max: 1500,
                         left: 'left',
                         top: 'bottom',
-                        text: ['High', 'Low'],
+                        text: ['高', '低'],
                         inRange: {
                             color: ['#e0ffff', '#006edd']
                         }
@@ -309,17 +353,79 @@
                     },
                     series: [
                         {
-                            name: 'categoryA',
+                            name: '',
                             type: 'map',
                             geoIndex: 0,
                             data: []
                         }
                     ]
                 },
-                options:{
+                options: seriseMap
+            });
+            var dom = echarts.init(document.getElementById('chart-2'))
+            dom.on("timelinechanged", function (params,param) {
+                params.currentIndex
+            })
+        }
+        function barOption(echartsDom, date, bar, line, title) {
+            echartsDom.clear();
+            echartsDom.setOption(
+                    {
+                        color: ['#008000'],
+                        title: {
+                            text: title,
+                            left: "center"
+                        },
+                        tooltip: {
+                            trigger: 'axis'
+                        },
+                        yAxis: {
+                            type: 'category',
+                            data: date
+                        },
+                        xAxis: [
+                            {
+                                type: 'value',
+                                name: "绝对量（亿元）"
+                            }
+                        ],
+                        dataZoom: [{
+                            type: 'inside',
+                            start: 20,
+                            end: 70
+                        }, {
+                            start: 20,
+                            end: 70,
+                            handleSize: '80%',
+                            handleStyle: {
+                                color: '#fff',
+                                shadowBlur: 3,
+                                shadowColor: 'rgba(0, 0, 0, 1)',
+                                shadowOffsetX: 2,
+                                shadowOffsetY: 2
+                            }
+                        }],
+                        series: [
+                            {
+                                name: '绝对量',
+                                type: 'bar',
+                                barWidth: '50%',
+                                itemStyle: {
+                                    barBorderRadius: 5,
+                                    color: new echarts.graphic.LinearGradient(
+                                            0, 0, 0, 1,
+                                            [
+                                                {offset: 0, color: '#7bc1f9'},
+                                                {offset: 1, color: '#2F9cf3'}
 
-                }
-            }
+                                            ]
+                                    )
+                                },
+                                data: bar
+                            }
+                        ]
+                    }
+            )
         }
     }()
 </script>

@@ -40,7 +40,7 @@ func GetMapData(prov, timeEnd string) ([] *DataCollect, error) {
 	loc, _ := time.LoadLocation("Local")
 	te, _ := time.ParseInLocation(timeLayout, timeEnd, loc)
 	o := orm.NewOrm()
-	qs := o.QueryTable("db_data_collect").Filter("data_type", prov).Filter("data_month", te).Limit(-1)
+	qs := o.QueryTable("db_data_collect").Filter("data_type", prov).Filter("data_month__lt", te).Limit(-1).OrderBy("data_month")
 	countyAnalysis := make([] *DataCollect, 0)
 	_, err := qs.All(&countyAnalysis)
 	if err != nil {
