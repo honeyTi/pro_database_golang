@@ -275,8 +275,7 @@
                         )
                     }
                 })
-            })
-            console.log(dataResetMap);
+            });
             var dom = echarts.init(document.getElementById('bar-chart1'));
             mapCharts(dom, date, dataResetMap, "各省份当期网络零售额绝对量")
         }
@@ -308,7 +307,7 @@
                         // y: 0,
                         axisType: 'category',
                         autoPlay: true,
-                        playInterval: 1000,
+                        playInterval: 2000,
                         data: date
                     },
                     tooltip: {},
@@ -362,49 +361,48 @@
                 },
                 options: seriseMap
             });
-            var dom = echarts.init(document.getElementById('chart-2'))
+            var dom1 = echarts.init(document.getElementById('bar-chart2'));
             dom.on("timelinechanged", function (params,param) {
-                params.currentIndex
+                barOption(dom1, dataMap[params.currentIndex])
             })
+            barOption(dom1, dataMap[0])
         }
-        function barOption(echartsDom, date, bar, line, title) {
-            echartsDom.clear();
+        function barOption(echartsDom, data) {
+            var bar=[],xAisData=[];
+            var list = _.sortBy(data.map, function (arr) {
+                return -arr.value;
+            });
+            list.slice(0, 10).forEach(function (ele) {
+                bar.push(ele.value);
+                xAisData.push(ele.name);
+            });
             echartsDom.setOption(
                     {
                         color: ['#008000'],
                         title: {
-                            text: title,
+                            text: data.date + "网络零售额当期前十省份排名",
                             left: "center"
                         },
                         tooltip: {
                             trigger: 'axis'
                         },
+                        grid: {
+                            top: "10%",
+                            right: "8%",
+                            left: "8%",
+                            bottom: "5%"
+                        },
                         yAxis: {
                             type: 'category',
-                            data: date
+                            data: xAisData.reverse()
                         },
                         xAxis: [
                             {
+                                position: 'top',
                                 type: 'value',
                                 name: "绝对量（亿元）"
                             }
                         ],
-                        dataZoom: [{
-                            type: 'inside',
-                            start: 20,
-                            end: 70
-                        }, {
-                            start: 20,
-                            end: 70,
-                            handleSize: '80%',
-                            handleStyle: {
-                                color: '#fff',
-                                shadowBlur: 3,
-                                shadowColor: 'rgba(0, 0, 0, 1)',
-                                shadowOffsetX: 2,
-                                shadowOffsetY: 2
-                            }
-                        }],
                         series: [
                             {
                                 name: '绝对量',
@@ -421,7 +419,7 @@
                                             ]
                                     )
                                 },
-                                data: bar
+                                data: bar.reverse()
                             }
                         ]
                     }
