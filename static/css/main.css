@@ -164,3 +164,28 @@ html, body {
 .chartMap-2>div:last-child {
     width: 40%;
 }
+.layui-nav-item-1:hover .layui-nav-child {
+    display: block!important;
+}
+/*用户个人信息中心*/
+.user-info {
+    width: 1200px;
+    margin: 0 auto;
+    min-height: 30px;
+    padding-top: 20px;
+}
+.user-info>div {
+    float: left;
+    background: #fff;
+    -webkit-box-shadow: 0 0 8px #cccccc;
+    -moz-box-shadow: 0 0 8px #cccccc;
+    box-shadow: 0 0 8px #cccccc;
+    padding: 20px;
+}
+.mean-left {
+    width: 280px;
+    margin-right: 20px;
+}
+.info-right {
+    width: 900px;
+}

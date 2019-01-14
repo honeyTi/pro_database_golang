@@ -28,4 +28,5 @@ func init() {
 	beego.Router("/transaction", &controllers.TransactionController{})
 	beego.Router("/transaction/getTrad", &controllers.TransactionController{}, "get:GetTradType")
 	beego.Router("/transaction/getTradAll", &controllers.TransactionController{}, "get:GetTradTypeAll")
+	beego.Router("/userInfo", &controllers.UserController{})
 }
