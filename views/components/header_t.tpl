@@ -1,4 +1,3 @@
-{{define "header"}}
 <!doctype html>
 <html lang="en">
 <head>
@@ -16,4 +15,3 @@
     <script type="text/javascript" src="/static/js/lodash.js"></script>
     <script type="text/javascript" src="/static/js/echarts.min.js"></script>
     <script type="text/javascript" src="/static/js/china.js"></script>
-{{end}}

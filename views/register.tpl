@@ -1,4 +1,4 @@
-{{template "header"}}
+{{template "components/header_t.tpl"}}
 <title>电商分析平台-注册</title>
 </head>
 <body>

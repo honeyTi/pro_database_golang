@@ -1,4 +1,3 @@
-{{define "navbar"}}
 <div class="layui-header">
     <div class="layui-logo" style="text-align: left;padding-left: 10px;font-size: 18px">
         <a href="/index" style="color: #009688;">
@@ -20,4 +19,3 @@
         <li class="layui-nav-item"><a href="/login?exit=true">退出登录</a></li>
     </ul>
 </div>
-{{end}}

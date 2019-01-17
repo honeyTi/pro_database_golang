@@ -1,4 +1,4 @@
-{{template "header"}}
+{{template "components/header_t.tpl"}}
     <title>系统-登录</title>
 </head>
 <body>

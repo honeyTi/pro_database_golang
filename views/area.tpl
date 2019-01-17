@@ -1,10 +1,10 @@
-{{template "header"}}
+{{template "components/header_t.tpl"}}
 <title>商品分类分析-首页</title>
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
-{{template "navbar" .}}
-{{template "slider" .}}
+{{template "components/navbar_t.tpl" .}}
+{{template "components/slider_bar_t.tpl" .}}
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <form class="layui-form search-padding" action="">
@@ -51,7 +51,7 @@
             </div>
         </div>
     </div>
-{{template "footer"}}
+{{template "components/footer_t.tpl"}}
 </div>
 <script>
     //JavaScript代码区域

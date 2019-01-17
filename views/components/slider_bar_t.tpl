@@ -1,4 +1,3 @@
-{{define "slider"}}
 <div class="layui-side layui-bg-black">
     <div class="layui-side-scroll">
         <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
@@ -24,4 +23,3 @@
         </ul>
     </div>
 </div>
-{{end}}
