@@ -29,5 +29,6 @@ func main() {
 	// orm.Debug = true
 	// 自动建表---如果表存在就跳过
 	orm.RunSyncdb("default", false,true)
+	beego.BConfig.WebConfig.Session.SessionOn = true
 	beego.Run()
 }

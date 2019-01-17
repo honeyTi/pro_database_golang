@@ -11,6 +11,11 @@ type LoginController struct {
 	beego.Controller
 }
 
+type LoginCode struct {
+	Msg string
+	Code int
+}
+
 func (c *LoginController) Get() {
 	isExit := c.Input().Get("exit")
 	if isExit == "true" {
@@ -29,8 +34,10 @@ func (l *LoginController) Post() {
 	userInfo, err := models.UserLogin(uname, pwd)
 	if err != nil {
 		l.Data["LoginState"] = false
-		l.Redirect("/login", 301)
-		return
+		l.Data["json"] = LoginCode{
+			Msg:"失败",
+			Code: 1,
+		}
 	}
 
 	if userInfo.UserName == uname &&
@@ -39,13 +46,18 @@ func (l *LoginController) Post() {
 		l.Ctx.SetCookie("uname", uname, maxAge, "/")
 		l.Ctx.SetCookie("pwd", pwd, maxAge, "/")
 		l.Data["LoginState"] = true
-		l.Redirect("/index", 302)
-		return
+		l.Data["json"] = LoginCode{
+			Msg:"成功",
+			Code: 0,
+		}
 	} else {
 		l.Data["LoginState"] = false
-		l.Redirect("/login", 301)
-		return
+		l.Data["json"] = LoginCode{
+			Msg:"失败",
+			Code: 1,
+		}
 	}
+	l.ServeJSON()
 }
 // 判断用户是否登录
 func CheckAccount(c *context.Context) bool  {

@@ -1,6 +1,7 @@
 package models
 
 import (
+	"errors"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"time"
@@ -26,11 +27,12 @@ func UserRegister(uname, pwd string) error {
 		Created:time.Now(),
 	}
 	qs := o.QueryTable("db_user_info")
-	err := qs.Filter("user_name",uname).One(userInfo)
+	userMap := new(UserInfo)
+	err := qs.Filter("user_name",uname).One(userMap)
 	if err != nil {
-		_, err = o.Insert(userInfo)
-		return nil
+		_, _ = o.Insert(userInfo)
+		return errors.New("注册成功")
 	} else {
-		return err
+		return nil
 	}
 }

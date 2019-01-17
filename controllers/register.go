@@ -9,6 +9,11 @@ type RegisterController struct {
 	beego.Controller
 }
 
+type RegisterCode struct {
+	Msg  string
+	Code int
+}
+
 func (this *RegisterController) Get() {
 	this.TplName = "register.tpl"
 }
@@ -18,9 +23,15 @@ func (this *RegisterController) Post() {
 	pwd := this.Input().Get("pwd")
 	err := models.UserRegister(uname, pwd)
 	if err != nil {
-		beego.Error(err)
-		this.Redirect("/register",302)
+		this.Data["json"] = RegisterCode{
+			Msg: "注册成功",
+			Code: 0,
+		}
 	} else {
-		this.Redirect("/login",302)
+		this.Data["json"] = RegisterCode{
+			Msg: "注册失败",
+			Code: 1,
+		}
 	}
+	this.ServeJSON()
 }
