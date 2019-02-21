@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego/plugins/cors"
 	_ "github.com/go-sql-driver/mysql"
 )
-
 
 func init() {
 	models.InitDB()
@@ -28,7 +28,13 @@ func main() {
 	// orm操作数据库开启调试----后期可注释掉此条代码
 	// orm.Debug = true
 	// 自动建表---如果表存在就跳过
-	orm.RunSyncdb("default", false,true)
+	orm.RunSyncdb("default", false, true)
 	beego.BConfig.WebConfig.Session.SessionOn = true
+	beego.InsertFilter("*", beego.BeforeRouter, cors.Allow(&cors.Options{
+		AllowOrigins:     []string{"*"},
+		AllowMethods:     []string{"PUT", "PATCH", "POST", "GET"},
+		AllowHeaders:     []string{"Origin"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,}))
 	beego.Run()
 }
