@@ -362,7 +362,7 @@
                 options: seriseMap
             });
             var dom1 = echarts.init(document.getElementById('bar-chart2'));
-            dom.on("timelinechanged", function (params,param) {
+            dom.on("timelinechanged", function (params) {
                 barOption(dom1, dataMap[params.currentIndex])
             })
             barOption(dom1, dataMap[0])
