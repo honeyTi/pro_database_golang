@@ -11,10 +11,10 @@
                 <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
                 {{.UserName}}
             </a>
-            <dl class="layui-nav-child">
-                <dd><a href="/userInfo">基本资料</a></dd>
-                <dd><a href="">安全设置</a></dd>
-            </dl>
+            {{/*<dl class="layui-nav-child">*/}}
+                {{/*<dd><a href="/userInfo">基本资料</a></dd>*/}}
+                {{/*<dd><a href="">安全设置</a></dd>*/}}
+            {{/*</dl>*/}}
         </li>
         <li class="layui-nav-item"><a href="/login?exit=true">退出登录</a></li>
     </ul>
