@@ -109,3 +109,48 @@ func (this *AreaController) GetMapData() {
 	}
 	this.ServeJSON()
 }
+// 获取省份数据
+func (this *AreaController) GetProvData() {
+	types := this.GetString("types")
+	prov := this.GetString("prov")
+	te := this.GetString("timeEnd")
+	proData, err := models.GetProvData(types, prov, te)
+	if err != nil {
+		this.Data["json"] = TotalData{
+			Msg: "暂无内容",
+			Code: 1,
+			Count: 0,
+			Data: proData,
+		}
+	} else {
+		this.Data["json"] = TotalData{
+			Msg: "成功",
+			Code: 0,
+			Count: len(proData),
+			Data: proData,
+		}
+	}
+	this.ServeJSON()
+}
+func (this *AreaController) GetCountryData() {
+	prov := this.GetString("prov")
+	countyType := this.GetString("countyType")
+	timeEnd := this.GetString("timeEnd")
+	countyAnalysis, err := models.GetCountryData(prov, countyType, timeEnd)
+	if err != nil {
+		this.Data["json"] = TableMap{
+			Msg:   "暂无内容",
+			Code:  1,
+			Count: 0,
+			Data:  countyAnalysis,
+		}
+	} else {
+		this.Data["json"] = TableMap{
+			Msg:   "成功",
+			Code:  0,
+			Count: len(countyAnalysis),
+			Data:  countyAnalysis,
+		}
+	}
+	this.ServeJSON()
+}
